@@ -19,7 +19,11 @@
 
       // Set the text content of the "name" h1 element to the retrieved value
       var nameElement = document.querySelector('.name');
-      nameElement.textContent = name;
+      if (nameElement) {
+        nameElement.textContent = name;
+      } else {
+        console.error('No element with class "name" found');
+      }
     </script>
   </head>
   <body>
