@@ -3,30 +3,23 @@
   <head>
     <title>Example Page</title>
     <script>
-      // Parse the query string parameters from the URL
-      function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-      }
-
-      // Get the value of the "name" parameter from the URL
-      var name = getParameterByName('name');
-
-      // Set the text content of the "name" h1 element to the retrieved value
-      var nameElement = document.querySelector('.name');
-      if (nameElement) {
-        nameElement.textContent = name;
-      } else {
-        console.error('No element with class "name" found');
-      }
+      // Make an HTTP GET request to the specified URL
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // Parse the response JSON and update the contents of an HTML element
+          var response = JSON.parse(xhr.responseText);
+          var titleElement = document.querySelector('.title');
+          titleElement.textContent = response.title;
+        } else {
+          console.error('Request failed.  Returned status of ' + xhr.status);
+        }
+      };
+      xhr.send();
     </script>
   </head>
   <body>
-    <h1 class="name"> Some Namea </h1>
+    <h1 class="title">Loading...</h1>
   </body>
 </html>
