@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Example Page</title>
-    <script>
-      // Make an HTTP GET request to the specified URL
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          // Parse the response JSON and update the contents of an HTML element
-          var response = JSON.parse(xhr.responseText);
-          var titleElement = document.querySelector('.title');
-          titleElement.textContent = response.title;
-        } else {
-          console.error('Request failed.  Returned status of ' + xhr.status);
-        }
-      };
-      xhr.send();
-    </script>
-  </head>
-  <body>
-    <h1 class="title">Loading...</h1>
-  </body>
+<head>
+  <title>Example Page</title>
+</head>
+<body>
+  <h1 id="name"></h1>
+  <script>
+    // Extract the value of the 'name' parameter from the current URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+
+    // Update the contents of the HTML element with the 'name' value
+    const nameElement = document.getElementById('name');
+    nameElement.textContent = name;
+  </script>
+</body>
 </html>
