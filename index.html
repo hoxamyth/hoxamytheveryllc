@@ -14,14 +14,15 @@
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
       }
 
-      // Get the value of the "id" parameter from the URL
-      var id = getParameterByName('id');
+      // Get the value of the "name" parameter from the URL
+      var name = getParameterByName('name');
 
-      // Print the value of the "id" parameter to the console
-      console.log(id);
+      // Set the text content of the "name" h1 element to the retrieved value
+      var nameElement = document.querySelector('.name');
+      nameElement.textContent = name;
     </script>
   </head>
   <body>
-    <h1>Example Page</h1>
+    <h1 class="name"> Some Name </h1>
   </body>
 </html>
